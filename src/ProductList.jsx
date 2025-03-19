@@ -5,17 +5,54 @@ function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
 
+    const practiceArray= [
+        {
+            category: "Humans",
+            members:[
+                    {
+                    id:1, 
+                    name: "Sarah", 
+                    age: "35"
+                    },
+                    
+                    {
+                    id:2, 
+                    name:"Mike", 
+                    age:"36"
+                    }
+                    ]
+        },
+        {
+            category: "Dogs",
+            members:[
+                    {
+                    id:1, 
+                    name:"Rupert", 
+                    age:"3"
+                    },
+
+                    {
+                    id:2,
+                    name:"Twiggy",
+                    age:"4"
+                    }
+                ]
+        }
+    ]
+    
     const plantsArray = [
         {
             category: "Air Purifying Plants",
             plants: [
                 {
+                    id: 1,
                     name: "Snake Plant",
                     image: "https://cdn.pixabay.com/photo/2021/01/22/06/04/snake-plant-5939187_1280.jpg",
                     description: "Produces oxygen at night, improving air quality.",
                     cost: "$15"
                 },
                 {
+                    id: 2,
                     name: "Spider Plant",
                     image: "https://cdn.pixabay.com/photo/2018/07/11/06/47/chlorophytum-3530413_1280.jpg",
                     description: "Filters formaldehyde and xylene from the air.",
@@ -274,9 +311,24 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
-
-
+                    {plantsArray.map((category, index) =>
+                    <div key={index}>
+                        <h2>{category.category}</h2>
+                        <ul>
+                        {category.plants.map(member => (
+                            <li key={member.index}>
+                                <h3>{member.name}</h3> 
+                                <img src={member.image} alt={member.name} width="100"/> 
+                                <p> cost: {member.cost}</p> 
+                                <p>description: {member.description}</p>
+                            </li>
+                        ))}
+                        </ul>
+                    </div>
+                )}
+                 
                 </div>
+            
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
             )}
