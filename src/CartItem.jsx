@@ -48,7 +48,7 @@ const CartItem = ({ onContinueShopping }) => {
    
   };
 
-
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
 
 
   // Calculate total cost based on quantity for an item
@@ -60,6 +60,7 @@ const CartItem = ({ onContinueShopping }) => {
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
+      <h2 style={{color: 'black'}}>Total Cart Items: {totalQuantity}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
@@ -73,6 +74,7 @@ const CartItem = ({ onContinueShopping }) => {
                 <button className="cart-item-button cart-item-button-inc" onClick={() => handleIncrement(item)}>+</button>
               </div>
               <div className="cart-item-total">Total: ${calculateTotalCost(item)}</div>
+              
               <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
             </div>
           </div>
@@ -82,7 +84,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1"onClick={handleCheckoutShopping}>Checkout</button>
       </div>
     </div>
   );
