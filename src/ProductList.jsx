@@ -244,6 +244,7 @@ function ProductList({ onHomeClick }) {
     const handleHomeClick = (e) => {
         e.preventDefault();
         onHomeClick();
+        setShowHome (true);
     };
 
     const handleCartClick = (e) => {
@@ -284,6 +285,8 @@ function ProductList({ onHomeClick }) {
                     </div>
 
                 </div>
+                <div> <a href="#" onClick={(e) => handleHomeClick(e)} style={styleA}>Home</a></div>
+                <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>Plants</a></div>
                 <div>
                 <a href="#" onClick={() => setShowCart(true)} style={{ color: 'white', fontSize: '30px' }}>
                         <h1 className="cart">
